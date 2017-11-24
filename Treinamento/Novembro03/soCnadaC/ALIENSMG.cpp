@@ -10,10 +10,43 @@
 
 */
 #include <iostream>
+#include <stdio.h>
+#include <map>
 
 using namespace std;
 
-int main() {
+int main(){
+	map<char,int> DNAs;
+	char L;
+	int pluri = 0;
+	int sent;
+	
+	while(true){
+		cin >> sent;
+
+		if(sent == 0)
+			break;
+
+		pluri = 0;
+
+		for (int i = 0; i < 15; ++i)
+			DNAs[i+65] = 0;
+	
+		while(sent >= 0){
+			while((L = getchar()) != '\n'){
+				DNAs[L]++;
+			}
+
+			sent--;
+		}
+
+		for (int i = 0; i < 15; ++i)
+			for(int j = 1; j < 15; ++j)
+				if(DNAs[i+65] != DNAs[j+65])
+					pluri++;
+
+		cout << pluri << endl;
+	}
 	
 	return 0;
 }
